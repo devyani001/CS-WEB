@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Announcements - BioCell</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+
+    .hero {
+      
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-weight: 700;
+      font-size: 3rem;
+    }
+
+    .announcement-card {
+      background-color: #1e1e1e;
+      border-left: 6px solid #00e676;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .announcement-card h5 {
+      color: #00e676;
+    }
+
+    footer {
+      margin-top: 60px;
+      background: #1c1c1c;
+      color: #999;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>📢 Announcements</h1>
+    <p>Stay updated with the latest news, tests, and results from BioCell.</p>
+    
+  </section>
+  
+
+  <!-- Announcements Section -->
+  <div class="container py-5">
+    <div class="announcement-card" data-aos="fade-right">
+      <h5>🔬 Internal Test Date Released</h5>
+      <p>Internal Biology Test will be conducted on <strong>5th June 2025</strong>. Topics: Cell Cycle, DNA Structure, and Enzymes.</p>
+    </div>
+
+    <div class="announcement-card" data-aos="fade-left">
+      <h5>🧪 Lab Practical Submissions</h5>
+      <p>Last date for practical file submissions is <strong>31st May 2025</strong>. No late submissions will be accepted.</p>
+    </div>
+
+    <div class="announcement-card" data-aos="fade-right">
+      <h5>📊 Term Results Declared</h5>
+      <p>Term 1 results are live! Check your marks using your student ID on the <a href="#">results page</a>.</p>
+    </div>
+
+    <div class="announcement-card" data-aos="fade-left">
+      <h5>🎓 Guest Lecture on Genetics</h5>
+      <p>Dr. Meera Sharma (Geneticist at AIIMS) will conduct a webinar on <strong>30th May 2025</strong>. Registration is free.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 <span style="color:#00e676;">BioCell Academy</span>. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap & AOS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+</body>
+</html>
