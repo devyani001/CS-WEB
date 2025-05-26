@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioCell Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Aladin&family=Chokokutai&family=Permanent+Marker&family=Unica+One&display=swap');
+
+    :root {
+      --primary-color: #0a5c36;
+      --secondary-color: #03f484;
+      --accent-color: #f94c4c;
+      --dark-color: #1a1a2e;
+      --light-color: #f8f9fa;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    .navbar {
+      background-color: transparent !important;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      background-color: transparent !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    
+    .main-heading h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+      font-family: 'Arial Rounded MT Bold', sans-serif;
+    }
+    
+    .main-heading p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .feature-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .announcement-card {
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .testimonial-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .testimonial-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--secondary-color);
+    }
+    
+    .result-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .result-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-primary:hover {
+      background-color: #08482a;
+      border-color: #08482a;
+    }
+    
+    .btn-accent {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      color: white;
+    }
+    
+    .btn-accent:hover {
+      background-color: #e03c3c;
+      border-color: #e03c3c;
+      color: white;
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--secondary-color);
+    }
+    
+    .login-box form a {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      color: var(--secondary-color);
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: 0.5s;
+      margin-top: 40px;
+      letter-spacing: 4px;
+    }
+    
+    .login-box a:hover {
+      background: var(--secondary-color);
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px var(--secondary-color), 0 0 25px var(--secondary-color), 0 0 50px var(--secondary-color), 0 0 100px var(--secondary-color);
+    }
+    
+    .login-box a span {
+      position: absolute;
+      display: block;
+    }
+    
+    .login-box a span:nth-child(1) {
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--secondary-color));
+      animation: btn-anim1 1s linear infinite;
+    }
+    
+    @keyframes btn-anim1 {
+      0% {
+        left: -100%;
+      }
+      50%,
+      100% {
+        left: 100%;
+      }
+    }
+    
+    .login-box a span:nth-child(2) {
+      top: -100%;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, var(--secondary-color));
+      animation: btn-anim2 1s linear infinite;
+      animation-delay: 0.25s;
+    }
+    
+    @keyframes btn-anim2 {
+      0% {
+        top: -100%;
+      }
+      50%,
+      100% {
+        top: 100%;
+      }
+    }
+    
+    .login-box a span:nth-child(3) {
+      bottom: 0;
+      right: 100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg, transparent, var(--secondary-color));
+      animation: btn-anim3 1s linear infinite;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes btn-anim3 {
+      0% {
+        right: -100%;
+      }
+      50%,
+      100% {
+        right: 100%;
+      }
+    }
+    
+    .login-box a span:nth-child(4) {
+      bottom: -100%;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(360deg, transparent, var(--secondary-color));
+      animation: btn-anim4 1s linear infinite;
+      animation-delay: 0.75s;
+    }
+    
+    @keyframes btn-anim4 {
+      0% {
+        bottom: -100%;
+      }
+      50%,
+      100% {
+        bottom: 100%;
+      }
+    }
+    
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 50px 0 20px;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 15px;
+      transition: color 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: var(--secondary-color);
+    }
+    
+    .notes-section {
+      background-color: #f9f9f9;
+      padding: 80px 0;
+    }
+    
+    .youtube-section {
+      background-color: white;
+      padding: 80px 0;
+    }
+    
+    .notes-card, .video-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+    
+    .notes-card:hover, .video-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .notes-card .card-body {
+      padding: 25px;
+    }
+    
+    .badge-subject {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    @media (max-width: 768px) {
+      .main-heading h1 {
+        font-size: 2.5rem;
+      }
+      .main-heading p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header/Navigation -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand fs-4" href="#">
+          <img src="csweb-logo.png" alt="BioCell Logo" height="50">
+          <span class="ms-2 d-none d-md-inline">BioCell Academy</span>
+        </a>
+        <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title">BioCell</h5>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"></button>
+          </div>
+
+          <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  Resources
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#notes">Study Notes</a></li>
+                  <li><a class="dropdown-item" href="#youtube">Video Guides</a></li>
+                  <li><a class="dropdown-item" href="#announcements">Announcements</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#results">Results</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            </ul>
+
+            <div class="d-flex ms-lg-3 mt-3 mt-lg-0">
+              <a href="#" class="btn btn-outline-light me-2">Login</a>
+              <a href="#" class="btn btn-accent">Register</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <div class="main-heading">
+      <h1 class="display-3 fw-bold mb-4">BioCell Academy of Biology</h1>
+      <p class="lead mb-5" style="font-family: 'Chokokutai', system-ui; color: rgb(238, 9, 9)">Master the Science of Life with Expert Guidance</p>
+      <div class="login-box">
+        <form action="">
+          <a href="#about">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>EXPLORE MORE
+          </a>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-5" id="about" style="background-color: white;">
+    <div class="container py-5">
+      <h2 class="section-title">About BioCell</h2>
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Biology Class" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-lg-6">
+          <h3 class="mb-4">Why Choose BioCell?</h3>
+          <p class="lead">BioCell Academy is dedicated to providing top-quality biology education to aspiring students.</p>
+          <p>Our expert faculty, comprehensive study materials, and result-oriented approach have helped hundreds of students achieve their academic goals in biology and related fields.</p>
+          <div class="row mt-4">
+            <div class="col-md-6 mb-3">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle me-3 text-success" style="font-size: 1.5rem;"></i>
+                <div>
+                  <h5 class="mb-0">Expert Faculty</h5>
+                  <p class="mb-0">PhD qualified instructors</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle me-3 text-success" style="font-size: 1.5rem;"></i>
+                <div>
+                  <h5 class="mb-0">Comprehensive Notes</h5>
+                  <p class="mb-0">Topic-wise study materials</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle me-3 text-success" style="font-size: 1.5rem;"></i>
+                <div>
+                  <h5 class="mb-0">Regular Tests</h5>
+                  <p class="mb-0">Weekly assessments</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle me-3 text-success" style="font-size: 1.5rem;"></i>
+                <div>
+                  <h5 class="mb-0">Doubt Sessions</h5>
+                  <p class="mb-0">Personalized attention</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary mt-3">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-5 bg-light">
+    <div class="container py-5">
+      <h2 class="section-title">Our Features</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+          <div class="feature-card card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h4 class="card-title">Comprehensive Notes</h4>
+              <p class="card-text">Detailed, well-researched study materials covering all topics in biology, regularly updated with the latest syllabus.</p>
+              <a href="#notes" class="btn btn-sm btn-outline-primary">View Notes</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-card card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon">
+                <i class="fab fa-youtube"></i>
+              </div>
+              <h4 class="card-title">Video Guides</h4>
+              <p class="card-text">Expert-created video tutorials explaining complex concepts with animations and real-life examples.</p>
+              <a href="#youtube" class="btn btn-sm btn-outline-primary">Watch Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h4 class="card-title">Performance Tracking</h4>
+              <p class="card-text">Regular tests with detailed analytics to track your progress and identify areas for improvement.</p>
+              <a href="#results" class="btn btn-sm btn-outline-primary">See Results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notes Section -->
+  <section class="notes-section py-5" id="notes">
+    <div class="container py-5">
+      <h2 class="section-title">Study Notes</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+          <div class="notes-card card h-100">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1422&q=80" class="card-img-top" alt="Cell Biology">
+            <div class="card-body">
+              <span class="badge badge-subject mb-2">Cell Biology</span>
+              <h5 class="card-title">Cell Structure and Function</h5>
+              <p class="card-text">Comprehensive notes covering prokaryotic and eukaryotic cells, organelles, and cellular processes.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Updated: 2 days ago</small>
+                <a href="#" class="btn btn-sm btn-primary">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="notes-card card h-100">
+            <img src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1586&q=80" class="card-img-top" alt="Genetics">
+            <div class="card-body">
+              <span class="badge badge-subject mb-2">Genetics</span>
+              <h5 class="card-title">Mendelian Inheritance</h5>
+              <p class="card-text">Detailed explanation of Mendel's laws, Punnett squares, and inheritance patterns with examples.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Updated: 1 week ago</small>
+                <a href="#" class="btn btn-sm btn-primary">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="notes-card card h-100">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Ecology">
+            <div class="card-body">
+              <span class="badge badge-subject mb-2">Ecology</span>
+              <h5 class="card-title">Ecosystems and Biomes</h5>
+              <p class="card-text">Complete guide to ecosystems, food chains, energy flow, and major biomes of the world.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Updated: 3 days ago</small>
+                <a href="#" class="btn btn-sm btn-primary">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="#" class="btn btn-primary">View All Notes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube Guides Section -->
+  <section class="youtube-section py-5" id="youtube">
+    <div class="container py-5">
+      <h2 class="section-title">Video Guides</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4" data-aos="fade-up">
+          <div class="video-card card h-100">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/8m6hHRlKwxY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Cell Division: Mitosis Explained</h5>
+              <p class="card-text">Detailed explanation of the mitotic process with animations and diagrams.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Duration: 15:42</small>
+                <a href="#" class="btn btn-sm btn-outline-primary">View More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="video-card card h-100">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/Mehz7tCxjSE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">DNA Replication Process</h5>
+              <p class="card-text">Step-by-step guide to DNA replication with 3D animations.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Duration: 18:25</small>
+                <a href="#" class="btn btn-sm btn-outline-primary">View More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="#" class="btn btn-primary">View All Videos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Announcements Section -->
+  <section class="py-5 bg-light" id="announcements">
+    <div class="container py-5">
+      <h2 class="section-title">Announcements</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="announcement-card card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title mb-0">Upcoming Test Schedule</h5>
+                <small class="text-muted">June 15, 2023</small>
+              </div>
+              <p class="card-text">Monthly test for all students will be conducted on June 25th. Syllabus includes Cell Biology and Genetics chapters 1-5.</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+            </div>
+          </div>
+          <div class="announcement-card card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title mb-0">New Batch Starting Soon</h5>
+                <small class="text-muted">June 10, 2023</small>
+              </div>
+              <p class="card-text">New batch for NEET 2024 preparation starting from July 1st. Limited seats available. Register now!</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">Register</a>
+            </div>
+          </div>
+          <div class="announcement-card card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title mb-0">Holiday Notice</h5>
+                <small class="text-muted">June 5, 2023</small>
+              </div>
+              <p class="card-text">The academy will remain closed from June 12th to June 14th for annual maintenance. Regular classes will resume on June 15th.</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">View Calendar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="py-5" id="results" style="background-color: white;">
+    <div class="container py-5">
+      <h2 class="section-title">Our Results</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+          <div class="result-card text-center p-4">
+            <h1 class="display-4 text-primary">98%</h1>
+            <h5>Success Rate</h5>
+            <p class="mb-0">of our students qualify in competitive exams</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="result-card text-center p-4">
+            <h1 class="display-4 text-primary">150+</h1>
+            <h5>Top Rankers</h5>
+            <p class="mb-0">in various medical entrance exams</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="result-card text-center p-4">
+            <h1 class="display-4 text-primary">1000+</h1>
+            <h5>Students</h5>
+            <p class="mb-0">successfully guided in last 5 years</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-5">
+        <h3 class="text-center mb-4">Student Testimonials</h3>
+        <div class="row">
+          <div class="col-md-4 mb-4" data-aos="fade-up">
+            <div class="testimonial-card">
+              <div class="text-center mb-3">
+                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" class="testimonial-img">
+              </div>
+              <div class="text-center">
+                <h5>Priya Sharma</h5>
+                <p class="text-muted">NEET 2023 - AIR 124</p>
+                <p>"BioCell's notes and test series were instrumental in my preparation. The faculty's guidance helped me clear all my concepts."</p>
+                <div class="text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-card">
+              <div class="text-center mb-3">
+                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" class="testimonial-img">
+              </div>
+              <div class="text-center">
+                <h5>Rahul Verma</h5>
+                <p class="text-muted">AIIMS 2023 - AIR 87</p>
+                <p>"The video explanations of complex topics made learning enjoyable. Regular doubt sessions were extremely helpful."</p>
+                <div class="text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-card">
+              <div class="text-center mb-3">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="testimonial-img">
+              </div>
+              <div class="text-center">
+                <h5>Ananya Patel</h5>
+                <p class="text-muted">JIPMER 2023 - AIR 56</p>
+                <p>"The performance tracking system helped me identify my weak areas and improve systematically. Highly recommended!"</p>
+                <div class="text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-5 bg-light" id="contact">
+    <div class="container py-5">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Get in Touch</h4>
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input type="tel" class="form-control" id="phone">
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Contact Information</h4>
+              <div class="mb-4">
+                <h5><i class="fas fa-map-marker-alt me-2 text-primary"></i> Address</h5>
+                <p>123 Biology Lane, Science City, SC 12345</p>
+              </div>
+              <div class="mb-4">
+                <h5><i class="fas fa-phone me-2 text-primary"></i> Phone</h5>
+                <p>+1 (123) 456-7890</p>
+              </div>
+              <div class="mb-4">
+                <h5><i class="fas fa-envelope me-2 text-primary"></i> Email</h5>
+                <p>info@biocellacademy.com</p>
+              </div>
+              <div class="mb-4">
+                <h5><i class="fas fa-clock me-2 text-primary"></i> Working Hours</h5>
+                <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
+              </div>
+              <div class="mt-4">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+              </div>
